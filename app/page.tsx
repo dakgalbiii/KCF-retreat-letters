@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -10,6 +11,14 @@ const fadeUp = {
 };
 
 export default function RetreatPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white dark:bg-[#0a0a0a]" />}>
+      <RetreatPageContent />
+    </Suspense>
+  );
+}
+
+function RetreatPageContent() {
   const searchParams = useSearchParams();
   const rawName = searchParams.get("name");
   const name = rawName
